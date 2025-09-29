@@ -24,11 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-        >
-        <header className="container antialiased">Next Tutorial Blog</header>
-        <main className="container">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        <header className="container py-4 text-x1 font-samibold">Next Tutorial Blog</header>
+        <main className="container py-4">
           {children}
         </main>
       </body>
