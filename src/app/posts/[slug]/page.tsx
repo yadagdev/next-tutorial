@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { findPostBySlug, posts } from '@/data/posts';
@@ -5,6 +6,15 @@ import { findPostBySlug, posts } from '@/data/posts';
 // オプション：ビルド時に静的化したい時用
 export const generateStaticParams = () => {
     return posts.map((post) => ({ slug: post.slug}));
+}
+
+export const generateMetaData = ({ params }: { params: { slug: string } }) => {
+    const post = findPostBySlug(params.slug);
+    if (!post) return { title: "Not Found" };
+    return {
+        title: `${post.title} | Next Tutorial Blog`,
+        description: post.excerpt,
+    };
 }
 
 // 事前申告したslug以外は404にする
