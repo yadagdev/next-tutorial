@@ -7,12 +7,15 @@ export const generateStaticParams = () => {
     return posts.map((post) => ({ slug: post.slug}));
 }
 
+// 事前申告したslug以外は404にする
+export const dynamicparams = false;
+
 const PostPage = ({ params }: { params: { slug: string }}) => {
     const post = findPostBySlug(params.slug);
     if (!post) return notFound();
 
     return (
-        <article className="prose prose-invert max-w-none">
+        <article className="max-w-[70ch] leading-relaxed">
             <Link href="/" className="text-sm hover:underline">← Home</Link>
             <h1 className="text-3xl font-bold mt-2">{post.title}</h1>
             <div className="text-sm opacity-70">{post.date}</div>
